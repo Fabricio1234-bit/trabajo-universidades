@@ -4,4 +4,4 @@
 docker build -f Dockerfile -t calculadora .
 
 # Comando para crear el contenedor
-docker run -d -p 8118:80 -p 2202:22 --name calculara calculadora 
+docker run -d -p 8118:80 -p 2202:22 --name calculara calculado
