@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Universidades Licenciadas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Consulta de Universidades Licenciadas</h1>
+        
+        <form action="/cgi-bin/consulta_universidades.py" method="GET">
+            <label for="searchQuery">Buscar Universidad:</label>
+            <input type="text" id="searchQuery" name="searchQuery" placeholder="Ingresa nombre o programa...">
+            
+            <input type="submit" value="Buscar">
+        </form>
+
+        <div id="results">
+            <!-- Los resultados de la consulta se mostrarán aquí -->
+        </div>
+    </div>
+</body>
+</html>
