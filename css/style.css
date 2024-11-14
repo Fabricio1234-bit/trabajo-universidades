@@ -1,32 +1,160 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    margin: 20px;
 }
 
-h1 {
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.wrapper {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    flex-direction: column;
+    row-gap: 4%;
+    max-width: 800px;
+    padding: 3vh 0;
+	justify-content: center;
+	align-items: center;
+	max-height: 80vh;
+	overflow: auto;
+	overflow-x: auto;
+}
+
+.mytitle {
+    text-align: center;
     color: #333;
-}
-
-form {
+    font-size: 24px;
     margin-bottom: 20px;
+    padding: 1.5%;
 }
 
-label, select, input {
-    display: block;
-    margin-bottom: 10px;
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 24px;
+    color: black;
+	padding: 10px;
+}
+
+.input_P {
+    display: flex;
+    gap: 20px;
+	padding: 3vh 0;
+	justify-content: center;
+    align-items: center;
+}
+
+select, input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 250px;
+}
+
+select {
+    background-color: #fafafa;
+}
+
+input[type="text"] {
+    background-color: #fff;
+}
+
+input[type="submit"] {
+    padding: 12px 20px;
+    font-size: 16px;
+	width: 90%;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+	justify-content: center;
+	align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.answer {
+    background-color: var(--skyblue);
+    border-radius: 15px;
+    padding: 1%;
+    overflow-y:auto ;
+}
+
+.table-container {
+    width: 100%;
+    height: 70vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 0 10px;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border: solid 10px none;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
-th, td {
+table tr {
+    color: black;
+    background-color: lightblue;
+    font-size: 16px;
+}
+
+table th {
+    background-color: var(--dark);
+    color: white;
+}
+
+table td {
+    background-color: lightgray;
+    color: var(--dark);
+}
+
+table th, table td {
     padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
+    word-wrap: break-word;
 }
 
-th {
-    background-color: #f4f4f4;
+td {
+    background-color: #f9f9f9;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+}
+
+a {
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

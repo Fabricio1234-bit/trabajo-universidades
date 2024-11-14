@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Búsqueda de Universidades</title>
-    <link rel="stylesheet" href="css/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+	<title>Consulta de Universidades Licenciadas</title>
 </head>
 <body>
-    <h1>Búsqueda de Universidades Licenciadas</h1>
-    <form action="/cgi-bin/universidad.pl" method="post">
-        <label for="criterio">Criterio de búsqueda:</label>
-        <select name="criterio" id="criterio">
-            <option value="nombre">Nombre Universidad</option>
-            <option value="periodo">Periodo Licenciamiento</option>
-            <option value="departamento">Departamento Local</option>
-            <option value="programa">Denominación Programa</option>
-        </select>
-        <br><br>
-        <label for="valor">Valor de búsqueda:</label>
-        <input type="text" name="valor" id="valor" required>
-        <br><br>
-        <button type="submit">Buscar</button>
-    </form>
+	<div class ="wrapper">
+        <div class ="mytitle">
+            <h1>Búsqueda de universidades</h1>
+        </div>
+        <form class ="content" action="/cgi-bin/consulta.pl" method="post">
+            <label for="kind">Ingrese el parámetro deseado: </label>
+            <div class ="input_P">
+                <select name ="kind" required>
+                    <option value="name">Nombre</option>
+                    <option value="period_L">Periodo de Licenciamiento</option>
+                    <option value="region">Departamento Filial</option>
+                    <option value="program">Nombre del programa</option>
+                </select>
+                <input type="text" name="keyword" required>
+            </div>
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
 </body>
 </html>
