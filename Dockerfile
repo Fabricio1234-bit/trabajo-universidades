@@ -28,9 +28,9 @@ RUN ln -s /usr/lib/cgi-bin /home/pweb/cgi-bin && \
     ln -s /home/pweb /usr/lib/cgi-bin/toHOME && \
     ln -s /home/pweb /var/www/html/toHOME
 
-COPY ./cgi-bin/consulta.pl /usr/lib/cgi-bin/
-RUN dos2unix /usr/lib/cgi-bin/consulta.pl && \
-    chmod +x /usr/lib/cgi-bin/consulta.pl
+COPY ./cgi-bin/universidad.pl /usr/lib/cgi-bin/
+RUN dos2unix /usr/lib/cgi-bin/universidad.pl && \
+    chmod +x /usr/lib/cgi-bin/universidad.pl
 
 COPY ./index.html /var/www/html/
 COPY ./cgi-bin/Programas_de_Universidades.csv /usr/lib/cgi-bin/

@@ -15,7 +15,7 @@ print <<HTML;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Consulta de Universidades Licenciadas</title>
 </head>
 <body>
@@ -40,21 +40,7 @@ if(<IN>){
     print<<BLOCK;
     <table>
     <tr>
-        <th>Código</th>
-        <th>Nombre</th>
-        <th>Tipo de Gestión</th>
-        <th>Estado de Licenciamiento</th>
-        <th>Periodo de Licenciamiento</th>
-        <th>Departamento Filial</th>
-        <th>Provincia Filial</th>
-        <th>Departamento Local</th>
-        <th>Provincia Local</th>
-        <th>Distrito Local</th>
-        <th>Tipo de Autorización</th>
-        <th>Programa</th>
-        <th>Tipo de Nivel Académico</th>
-        <th>Nivel Académico</th>
-        <th>Tipo de Autorización del Programa</th>
+        <th>Código</th><th>Nombre</th><th>Tipo de Gestión</th><th>Estado de Licenciamiento</th><th>Periodo de Licenciamiento</th><th>Departamento Filial</th><th>Provincia Filial</th><th>Departamento Local</th><th>Provincia Local</th><th>Distrito Local</th><th>Tipo de Autorización</th><th>Programa</th><th>Tipo de Nivel Académico</th><th>Nivel Académico</th><th>Tipo de Autorización del Programa</th>
     </tr>
 BLOCK
 }
@@ -98,7 +84,7 @@ print <<HTML;
     </table>
         </div>
     </div>
-    <a href="../index.html">Volver a la página inicial</a>
+    <a href="../index.html">Volver al menu</a>
 </body>
 </html>
 HTML
