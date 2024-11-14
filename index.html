@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta Universidades Licenciadas</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Consulta Universidades</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Consulta de Universidades Licenciadas</h1>
-        
-        <form action="/cgi-bin/consulta_universidades.py" method="GET">
-            <label for="searchQuery">Buscar Universidad:</label>
-            <input type="text" id="searchQuery" name="searchQuery" placeholder="Ingresa nombre o programa...">
-            
-            <input type="submit" value="Buscar">
-        </form>
+    <h1>Consulta de Universidades</h1>
+    <form action="/cgi-bin/universidad.pl" method="post">
+        <label for="nombre_universidad">Nombre Universidad:</label>
+        <input type="text" id="nombre_universidad" name="nombre_universidad"><br><br>
 
-        <div id="results">
-            <!-- Los resultados de la consulta se mostrarán aquí -->
-        </div>
-    </div>
+        <label for="periodo_licenciamiento">Periodo Licenciamiento:</label>
+        <input type="text" id="periodo_licenciamiento" name="periodo_licenciamiento"><br><br>
+
+        <label for="departamento_local">Departamento Local:</label>
+        <input type="text" id="departamento_local" name="departamento_local"><br><br>
+
+        <label for="denominacion_programa">Denominación Programa:</label>
+        <input type="text" id="denominacion_programa" name="denominacion_programa"><br><br>
+
+        <input type="submit" value="Buscar">
+    </form>
 </body>
 </html>

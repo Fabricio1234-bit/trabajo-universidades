@@ -1,4 +1,4 @@
-FROM bitnami/minideb 
+FROM bitnami/minideb
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
@@ -28,14 +28,19 @@ RUN ln -s /usr/lib/cgi-bin /home/pweb/cgi-bin && \
     ln -s /home/pweb /usr/lib/cgi-bin/toHOME && \
     ln -s /home/pweb /var/www/html/toHOME
 
-COPY ./cgi-bin/calcula.pl /usr/lib/cgi-bin/
-RUN dos2unix /usr/lib/cgi-bin/calcula.pl && \
-    chmod +x /usr/lib/cgi-bin/calcula.pl
+# Copiar el archivo CGI renombrado y el archivo CSV
+COPY ./cgi-bin/universidad.pl /usr/lib/cgi-bin/
+COPY ./universidades.csv /usr/lib/cgi-bin/
 
+# Convertir el archivo CGI a formato UNIX y hacerlo ejecutable
+RUN dos2unix /usr/lib/cgi-bin/universidad.pl && \
+    chmod +x /usr/lib/cgi-bin/universidad.pl
+
+# Copiar el archivo HTML y el directorio CSS
 COPY ./index.html /var/www/html/
-
 COPY ./css /var/www/html/css/
 
+# Configuración de Apache
 RUN echo '<VirtualHost *:80>\n\
     ServerAdmin webmaster@localhost\n\
     DocumentRoot /var/www/html\n\
