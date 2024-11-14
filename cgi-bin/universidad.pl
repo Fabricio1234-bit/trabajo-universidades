@@ -27,10 +27,10 @@ print <<HTML;
             <div class="table-container">
 HTML
 
-my $kind = $cgi->param('kind');
-my $keyword = $cgi->param('keyword');
-if(!($kind eq "period")){
-    $keyword = uc($keyword);
+my $parametro = $cgi->param('parametro');
+my $buscar = $cgi->param('buscar');
+if(!($parametro eq "period")){
+    $buscar = uc($buscar);
 }
 
 my $flag;
@@ -49,9 +49,9 @@ binmode(STDIN, ":utf8");
 binmode(STDOUT, ":utf8");
 
 while(my $line = <IN>){
-    my %dict = searchLine($line);
-    my $value = $dict{$kind};
-    if(defined($value) && $value =~ /.*$keyword.*/){
+    my %dict = encontrarLinea($line);
+    my $value = $dict{$parametro};
+    if(defined($value) && $value =~ /.*$buscar.*/){
         if($line =~ m/(.+?)\|(.+?)\|(.+?)\|(.+?)\|(.+?)\|.+?\|.+?\|(.+?)\|(.+?)\|.+?\|(.+?)\|(.+?)\|(.+?)\|.+?\|.+?\|(.+?)\|(.+?)\|(.+?)\|(.+?)\|.+?\|.+?\|(.+?)\|.+/){
             print "<tr>\n";
             print "<td>$1</td>\n";
@@ -89,7 +89,7 @@ print <<HTML;
 </html>
 HTML
 
-sub searchLine{
+sub encontrarLinea{
     my %dict = ();
     my $line = $_[0];
     if($line =~ m/.+?\|(.+?)\|.+?\|.+?\|(.+?)\|.+?\|.+?\|.+?\|.+?\|.+?\|(.+?)\|.+?\|.+?\|.+?\|.+?\|.+?\|(.+?)\|.+/){
