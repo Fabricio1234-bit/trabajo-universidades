@@ -34,7 +34,7 @@ if(!($parametro eq "period")){
 }
 
 my $flag;
-open(IN, "Programas_de_Universidades.csv") or die "<h2>ERROR: no se pudo abrir el archivo</h2>";
+open(IN, "Programas_de_Universidades.csv") or die "<h2>ERROR: No se puedo abrir el archivo, verifique el archivo -Programas_de_Universidades.csv- que se encuentra en la carpeta</h2>";
 
 if(<IN>){
     print<<BLOCK;
