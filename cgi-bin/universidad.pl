@@ -2,39 +2,115 @@
 use strict;
 use warnings;
 use CGI;
+use utf8;
+use Text::CSV;
 
 my $cgi = CGI->new;
-print $cgi->header(-type => "text/html", -charset => "UTF-8");
+$cgi->charset('UTF-8');
+print $cgi->header('text/html; charset=UTF-8');
 
-# Obtiene los parámetros del formulario
-my $criterio = $cgi->param("criterio");
-my $valor = $cgi->param("valor");
+print <<HTML;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <title>Consulta de Universidades Licenciadas</title>
+</head>
+<body>
+    <div class ="wrapper">
+        <div class ="mytitle">
+            <h1>Resultados de la búsqueda</h1>
+        </div>
+        <div class ="answer">
+            <div class="table-container">
+HTML
 
-# Lee el archivo CSV
-open my $fh, "<", "/usr/lib/cgi-bin/universidades.csv" or die "No se pudo abrir el archivo CSV: $!";
+my $kind = $cgi->param('kind');
+my $keyword = $cgi->param('keyword');
+if(!($kind eq "period")){
+    $keyword = uc($keyword);
+}
 
-# Imprime encabezado HTML
-print "<html><head><title>Resultados de la búsqueda</title></head><body>";
-print "<h1>Resultados de la búsqueda</h1>";
-print "<table border='1'><tr><th>Nombre Universidad</th><th>Periodo Licenciamiento</th><th>Departamento Local</th><th>Denominación Programa</th></tr>";
+my $flag;
+open(IN, "Programas_de_Universidades.csv") or die "<h2>ERROR: no se pudo abrir el archivo</h2>";
 
-# Lee y procesa cada línea del archivo CSV
-while (my $line = <$fh>) {
-    chomp $line;
-    my ($nombre, $periodo, $departamento, $programa) = split /|/, $line;
+if(<IN>){
+    print<<BLOCK;
+    <table>
+    <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Tipo de Gestión</th>
+        <th>Estado de Licenciamiento</th>
+        <th>Periodo de Licenciamiento</th>
+        <th>Departamento Filial</th>
+        <th>Provincia Filial</th>
+        <th>Departamento Local</th>
+        <th>Provincia Local</th>
+        <th>Distrito Local</th>
+        <th>Tipo de Autorización</th>
+        <th>Programa</th>
+        <th>Tipo de Nivel Académico</th>
+        <th>Nivel Académico</th>
+        <th>Tipo de Autorización del Programa</th>
+    </tr>
+BLOCK
+}
 
-    # Filtra de acuerdo al criterio seleccionado
-    if (($criterio eq "nombre" && $nombre =~ /\Q$valor\E/i) ||
-        ($criterio eq "periodo" && $periodo =~ /\Q$valor\E/i) ||
-        ($criterio eq "departamento" && $departamento =~ /\Q$valor\E/i) ||
-        ($criterio eq "programa" && $programa =~ /\Q$valor\E/i)) {
+binmode(STDIN, ":utf8");
+binmode(STDOUT, ":utf8");
 
-        # Imprime los resultados en una tabla
-        print "<tr><td>$nombre</td><td>$periodo</td><td>$departamento</td><td>$programa</td></tr>";
+while(my $line = <IN>){
+    my %dict = searchLine($line);
+    my $value = $dict{$kind};
+    if(defined($value) && $value =~ /.*$keyword.*/){
+        if($line =~ m/(.+?)\|(.+?)\|(.+?)\|(.+?)\|(.+?)\|.+?\|.+?\|(.+?)\|(.+?)\|.+?\|(.+?)\|(.+?)\|(.+?)\|.+?\|.+?\|(.+?)\|(.+?)\|(.+?)\|(.+?)\|.+?\|.+?\|(.+?)\|.+/){
+            print "<tr>\n";
+            print "<td>$1</td>\n";
+            print "<td>$2</td>\n";
+            print "<td>$3</td>\n";
+            print "<td>$4</td>\n";
+            print "<td>$5</td>\n";
+            print "<td>$6</td>\n";
+            print "<td>$7</td>\n";
+            print "<td>$8</td>\n";
+            print "<td>$9</td>\n";
+            print "<td>$10</td>\n";
+            print "<td>$11</td>\n";
+            print "<td>$12</td>\n";
+            print "<td>$13</td>\n";
+            print "<td>$14</td>\n";
+            print "<td>$15</td>\n";
+            $flag = 1;
+            print "</tr>\n";
+            next;
+        }
     }
 }
 
-print "</table>";
-print "</body></html>";
+close(IN);
+if(!defined($flag)){
+    print "<p> No se han encontrado resultados</p>\n";
+}
+print <<HTML;
+    </table>
+        </div>
+    </div>
+    <a href="../index.html">Volver a la página inicial</a>
+</body>
+</html>
+HTML
 
-close $fh;
+sub searchLine{
+    my %dict = ();
+    my $line = $_[0];
+    if($line =~ m/.+?\|(.+?)\|.+?\|.+?\|(.+?)\|.+?\|.+?\|.+?\|.+?\|.+?\|(.+?)\|.+?\|.+?\|.+?\|.+?\|.+?\|(.+?)\|.+/){
+        $dict{"name"} = $1;
+        $dict{"period_L"} = $2;
+        $dict{"region"} = $3;
+        $dict{"program"} = $4;
+    }
+    return %dict;
+}
