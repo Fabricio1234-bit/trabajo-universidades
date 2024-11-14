@@ -2,26 +2,24 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta Universidades</title>
+    <title>Búsqueda de Universidades</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Consulta de Universidades</h1>
+    <h1>Búsqueda de Universidades Licenciadas</h1>
     <form action="/cgi-bin/universidad.pl" method="post">
-        <label for="nombre_universidad">Nombre Universidad:</label>
-        <input type="text" id="nombre_universidad" name="nombre_universidad"><br><br>
-
-        <label for="periodo_licenciamiento">Periodo Licenciamiento:</label>
-        <input type="text" id="periodo_licenciamiento" name="periodo_licenciamiento"><br><br>
-
-        <label for="departamento_local">Departamento Local:</label>
-        <input type="text" id="departamento_local" name="departamento_local"><br><br>
-
-        <label for="denominacion_programa">Denominación Programa:</label>
-        <input type="text" id="denominacion_programa" name="denominacion_programa"><br><br>
-
-        <input type="submit" value="Buscar">
+        <label for="criterio">Criterio de búsqueda:</label>
+        <select name="criterio" id="criterio">
+            <option value="nombre">Nombre Universidad</option>
+            <option value="periodo">Periodo Licenciamiento</option>
+            <option value="departamento">Departamento Local</option>
+            <option value="programa">Denominación Programa</option>
+        </select>
+        <br><br>
+        <label for="valor">Valor de búsqueda:</label>
+        <input type="text" name="valor" id="valor" required>
+        <br><br>
+        <button type="submit">Buscar</button>
     </form>
 </body>
 </html>
