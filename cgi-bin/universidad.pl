@@ -21,7 +21,7 @@ print "<table border='1'><tr><th>Nombre Universidad</th><th>Periodo Licenciamien
 # Lee y procesa cada línea del archivo CSV
 while (my $line = <$fh>) {
     chomp $line;
-    my ($nombre, $periodo, $departamento, $programa) = split /,/, $line;
+    my ($nombre, $periodo, $departamento, $programa) = split /|/, $line;
 
     # Filtra de acuerdo al criterio seleccionado
     if (($criterio eq "nombre" && $nombre =~ /\Q$valor\E/i) ||
